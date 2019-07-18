@@ -1,0 +1,9 @@
+.list-item{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+.list-item img{
+    width: 30px;
+    height: 30px;
+}

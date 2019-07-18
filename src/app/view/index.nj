@@ -1,0 +1,17 @@
+{% extends "parent.nj" %}
+
+{% block left %}
+<ul class="nav nav-pills nav-tab">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+<div class="list-group">
+  <a href="#" class="list-group-item list-item">
+    <img src="https://avatars3.githubusercontent.com/u/37173735?v=4&amp;s=120" title="yangcecode">
+    <span>31/666</span>
+    <span class="label label-success">问答</span>
+    <h4>Node 12 值得关注的新特性</h4>
+  </a>
+</div>
+{% endblock %}
