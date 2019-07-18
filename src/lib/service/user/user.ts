@@ -7,9 +7,11 @@ export class UserService implements IUserService {
   @inject()
   ctx: Context;
 
-  async getUser(ctx: Context): Promise<IUserResult> {
-    console.log(ctx.model.User,"yyyyyyyyyyyy");
-    let user = await this.ctx.model.User.find({});
+  async getUser(email: string): Promise<IUserResult> {
+    let user = await this.ctx.model.User.find({email});
     return user;
+  }
+  async createUser(user: any): Promise<any> {
+    
   }
 }

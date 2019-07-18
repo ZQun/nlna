@@ -1,4 +1,3 @@
-import { Context } from 'midway';
 /**
  * @description User-Service response
  */
@@ -15,5 +14,6 @@ export interface IUserResult {
  * @description User-Service abstractions
  */
 export interface IUserService {
-  getUser(ctx: Context): Promise<IUserResult>;
+  getUser(email: string): Promise<IUserResult>;
+  createUser(user: any): Promise<any>;
 }
