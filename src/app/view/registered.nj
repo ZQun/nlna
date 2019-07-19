@@ -53,7 +53,7 @@ $(".btn-register").click(function(){
 		layer.msg('密码不一致！');
 	}else{
 		axios({
-			url: http + 'registered',
+			url: http + 'user/register',
 			method: 'post',
 			data: {
 				email,

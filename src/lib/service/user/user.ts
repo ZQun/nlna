@@ -15,4 +15,8 @@ export class UserService implements IUserService {
     let result = await this.ctx.model.User.create(user);
     return result;
   }
+  async updateUser(user: any): Promise<any> {
+    let result = await this.ctx.model.User.update(user);
+    return result;
+  }
 }

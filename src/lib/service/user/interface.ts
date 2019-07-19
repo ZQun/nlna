@@ -16,4 +16,5 @@ export interface IUserResult {
 export interface IUserService {
   getUser(email: string): Promise<IUserResult>;
   createUser(user: any): Promise<any>;
+  updateUser(user: any): Promise<any>;
 }
