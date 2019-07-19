@@ -29,7 +29,7 @@
 $(".btn-code").click(function(){
 	let email = $('.email').val();
 	if(email != ""){
-		axios.get(http + 'sendEmail',{params: {
+		axios.get(http + 'user/sendemail',{params: {
 			email
 		}}).then(function (response) {
 			console.log(response);

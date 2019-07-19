@@ -9,6 +9,10 @@ export class HomeController {
 
   @get('/')
   async index() {
-    await this.ctx.render('index.nj', {name: 'aaaaaaaaaaaaaaaa'});
+    await this.ctx.render('index.nj');
+  }
+  @get('/register')
+  async register() {
+    await this.ctx.render('registered.nj');
   }
 }

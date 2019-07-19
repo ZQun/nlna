@@ -8,10 +8,11 @@ export class UserService implements IUserService {
   ctx: Context;
 
   async getUser(email: string): Promise<IUserResult> {
-    let user = await this.ctx.model.User.find({email});
+    let user = await this.ctx.model.User.findOne({email: email});
     return user;
   }
   async createUser(user: any): Promise<any> {
-    
+    let result = await this.ctx.model.User.create(user);
+    return result;
   }
 }
