@@ -12,7 +12,7 @@ export class HomeController {
     await this.ctx.render('index.nj');
   }
   
-  @get('/register')
+  @get('/register', {middleware: ['apiMiddleware']})
   async register() {
     await this.ctx.render('registered.nj');
   }
