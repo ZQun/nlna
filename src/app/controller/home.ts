@@ -11,8 +11,14 @@ export class HomeController {
   async index() {
     await this.ctx.render('index.nj');
   }
+  
   @get('/register')
   async register() {
     await this.ctx.render('registered.nj');
+  }
+
+  @get('/login')
+  async login() {
+    await this.ctx.render('login.nj');
   }
 }

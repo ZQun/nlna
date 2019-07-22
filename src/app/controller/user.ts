@@ -112,12 +112,4 @@ export class UserController {
       }
     }
   }
-
-  @get('/')
-  async getUser(ctx: Context): Promise<void> {
-    const user: IUserResult = await this.service.getUser('9328128@qq.com');
-    console.log(user.email);
-    ctx.body = {success: true, message: 'OK', data: user.email};
-  }
-  
 }
