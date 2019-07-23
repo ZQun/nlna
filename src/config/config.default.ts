@@ -21,8 +21,11 @@ export = (appInfo: any) => {
     host: 'smtp.qq.com',
     sender: '932812871@qq.com'
   }
-
-  
-
+  config.session = {
+    key: 'EGG_SESS',
+    maxAge: 7 * 24 * 3600 * 1000, // 7 天
+    httpOnly: true,
+    encrypt: true,
+  };
   return config;
 };

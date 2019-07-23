@@ -7,18 +7,18 @@ export class HomeController {
   @inject()
   ctx: Context;
 
-  @get('/')
+  @get('/index')
   async index() {
-    await this.ctx.render('index.nj');
+    await this.ctx.render('index.nj',{title: '首页'});
   }
-  
-  @get('/register', {middleware: ['apiMiddleware']})
+
+  @get('/register')
   async register() {
-    await this.ctx.render('registered.nj');
+    await this.ctx.render('registered.nj', {title: '注册'});
   }
 
   @get('/login')
   async login() {
-    await this.ctx.render('login.nj');
+    await this.ctx.render('login.nj', {title: '登录'});
   }
 }

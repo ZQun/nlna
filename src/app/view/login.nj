@@ -16,40 +16,18 @@
 	</div>
 </div>
 <script>
-$(".btn-code").click(function(){
-	let email = $('.email').val();
-	if(email != ""){
-		axios.get(http + 'user/sendemail',{params: {
-			email
-		}}).then(function (response) {
-			console.log(response);
-		}).catch(function (error) {
-			console.log(error);
-		});
-	}else{
-		layer.msg('邮箱不能为空！');
-	}
-
-});
 $(".btn-register").click(function(){
 	let email = $('.email').val();
-	let code = $('.code').val();
 	let password = $(".password").val();
-	let repassword = $(".repassword").val();
-	console.log(email, code, password, repassword);
-	if(email == "" || code == "" || password == "" || repassword == ""){
+	if(email == "" || password == ""){
 		layer.msg('信息不能为空！');
-	}else if(password != repassword){
-		layer.msg('密码不一致！');
 	}else{
 		axios({
-			url: http + 'user/register',
+			url: http + 'user/login',
 			method: 'post',
 			data: {
 				email,
-				code,
-				password,
-				repassword
+				password
 			},
 			headers:{
 				'x-csrf-token': $.cookie('csrfToken')

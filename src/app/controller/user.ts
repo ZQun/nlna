@@ -1,5 +1,5 @@
 import { Context, controller, get, inject, provide, plugin, post} from 'midway';
-import { IUserService, IUserResult } from '../../lib/service/user/interface'
+import { IUserService, IUserResult } from '../../lib/service/user/interface';
 
 
 @provide()
@@ -67,7 +67,7 @@ export class UserController {
       code: 'string',
       password: 'password'
     };
-    this.ctx.validate(createRule, this.ctx.request.body);
+    this.ctx.validate(createRule, userdata);
     let user: IUserResult = await this.service.getUser(userdata.email);
     if(!user){
       this.ctx.body = {
@@ -112,4 +112,35 @@ export class UserController {
       }
     }
   }
+
+  @post('/login')
+  async login(): Promise<void> {
+    let userdata = this.ctx.request.body;
+    const createRule = {
+      email: 'email',
+      password: 'password'
+    };
+    this.ctx.validate(createRule, userdata);
+    let user: IUserResult = await this.service.getUser(userdata.email);
+    if(!user){
+      this.ctx.body = {
+        code: 0,
+        msg: '邮箱未注册！'
+      };  
+      return;
+    } else if(user.password != userdata.password) {
+      this.ctx.body = {
+        code: 0,
+        msg: '密码不正确！'
+      };  
+      return;
+    } else { 
+      this.ctx.session.userId = user.id;
+      this.ctx.body = {
+        code: 1,
+        msg: '登录成功！'
+      }; 
+    }
+  }
+  
 }
