@@ -12,6 +12,9 @@ export class UserController {
   @plugin('email')
   email: any;
 
+  @plugin('validator')
+  validator: any;
+
   @inject('userService')
   service: IUserService;
 
@@ -120,7 +123,14 @@ export class UserController {
       email: 'email',
       password: 'password'
     };
-    this.ctx.validate(createRule, userdata);
+    let ruleError = this.validator.validate(createRule, userdata);
+    if(ruleError){
+      this.ctx.body = {
+        code: 0,
+        msg: ruleError[0].field + ' ' +ruleError[0].message
+      };  
+      return;
+    }
     let user: IUserResult = await this.service.getUser(userdata.email);
     if(!user){
       this.ctx.body = {
@@ -136,11 +146,21 @@ export class UserController {
       return;
     } else { 
       this.ctx.session.userId = user.id;
+      this.ctx.session.userEmail = user.email;
       this.ctx.body = {
         code: 1,
         msg: '登录成功！'
-      }; 
+      };  
     }
+  }
+
+  @post('/userout')
+  async userout(): Promise<void> {
+    this.ctx.session = null;
+    this.ctx.body = {
+      code: 1,
+      msg: '退出成功！'
+    };  
   }
   
 }

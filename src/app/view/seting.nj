@@ -2,7 +2,7 @@
 
 {% block left %}
 <div class="registered panel panel-default">
-	<div class="panel-heading">登录</div>
+	<div class="panel-heading">设置</div>
 	<div class="panel-body">
 		<div class="input-group input-group-lg">
 			<span class="input-group-addon" id="sizing-addon1">邮箱</span>

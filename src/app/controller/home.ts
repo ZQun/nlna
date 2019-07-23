@@ -9,7 +9,14 @@ export class HomeController {
 
   @get('/index')
   async index() {
-    await this.ctx.render('index.nj',{title: '首页'});
+    let email = this.ctx.session.userEmail;
+    await this.ctx.render('index.nj',{title: '首页', email: email});
+  }
+
+  @get('/seting')
+  async seting() {
+    let email = this.ctx.session.userEmail;
+    await this.ctx.render('seting.nj',{title: '设置', email: email});
   }
 
   @get('/register')

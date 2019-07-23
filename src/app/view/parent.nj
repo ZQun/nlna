@@ -38,15 +38,18 @@
                     <li><a href="/index">首页</a></li>
                     <li><a href="#">未读消息</a></li>
                     <li><a href="#">关于</a></li>
-                    <li><a href="/register">注册</a></li>
-                    <li><a href="/login">登录</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">设置</a></li>
-                            <li><a href="#">退出</a></li>
-                        </ul>
-                    </li>
+                    {% if email %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/seting">设置</a></li>
+                                <li class="userOut"><a href="#">退出</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="/register">注册</a></li>
+                        <li><a href="/login">登录</a></li>
+                    {% endif %}
                 </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -59,15 +62,19 @@
                 </div>
                 <article class="right col-xs-3 col-md-3">
                     <div class="panel panel-default information">
-                        <div class="panel-heading">个人信息</div>
-                        <div class="panel-body">
-                            <div class="info">
-                                <img src="https://avatars3.githubusercontent.com/u/37173735?v=4&amp;s=120" title="yangcecode">
-                                <p>yangcecode</p>
+                        {% if eamil %}
+                            <div class="panel-heading">个人信息</div>
+                            <div class="panel-body">
+                                <div class="info">
+                                    <img src="https://avatars3.githubusercontent.com/u/37173735?v=4&amp;s=120" title="yangcecode">
+                                    <p>yangcecode</p>
+                                </div>
+                                <p>积分：35</p>
+                                <p>这家伙很懒，什么个性签名都没有留下。</p>
                             </div>
-                            <p>积分：35</p>
-                            <p>这家伙很懒，什么个性签名都没有留下。</p>
-                        </div>
+                        {% else %}
+                            <div class="panel-heading">未登录</div>
+                        {% endif %}
                     </div>
                 </article>
             </div>
@@ -84,6 +91,23 @@
     <script>
         $(document).ready(function(){
             http = 'http://127.0.0.1:7001/';
+            $(".userOut").click(function(){
+                axios({
+                    url: http + 'user/userout',
+                    method: 'post',
+                    data: {
+                    },
+                    headers:{
+                        'x-csrf-token': $.cookie('csrfToken')
+                    }
+                }).then(function (response) {
+                    if(response.data.code == 1){
+                        window.location.href = http + "index";
+                    }
+                }).catch(function (error) {
+                    
+                });
+            });
         });
     </script>
 </html>
